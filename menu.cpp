@@ -37,22 +37,37 @@ void mostrarFilmes(filmes vetorFilmes[], int qntdFilmes)//opcao 1 : mostar tds o
 
 int main(){
 
+//Nome,Bilheteria,NotaImdb,DuracaoMinutos,PaisOrigem
     int capacidade=100;//o maximo que iremos colocar 
     int qntdFilmes=0;//vamos verificar quantos realemnte foram cadastrados no registros
-
+    char lixo;
     filmes* vetorFilmes = new filmes[capacidade];//
 
     ifstream entrada("filmes.csv");//onde ele esta 
     if (!entrada.is_open()){//so pra verificar se ele abriu 
+        
         cout<<"Erro: Nao foi possivel abrir o arquivo 'filmes.csv'."<<endl;
         delete[] vetorFilmes;
         return 1;
     }
+
+    for(int i=0; i< capacidade; i++){
+        qntdFilmes++;
+        //ler primeira linha (headers)
+        getline(entrada, vetorFilmes[i].nome, ',');
+        entrada >> vetorFilmes[i].bilheteria;
+        entrada >> lixo;
+        entrada >> vetorFilmes[i].notaIMDB;
+        entrada >> lixo;
+        entrada >> vetorFilmes[i].duracaoMin;
+        entrada >> lixo;
+        getline(entrada, vetorFilmes[i].paisOrigem);
+        vetorFilmes[i].id = qntdFilmes;
+    }
     
 
     int opcao;
-    do
-    {
+    
 
         cout<<"=================================="<<endl;
         cout<<"        Porjeto Filmes            "<<endl;
@@ -102,8 +117,6 @@ int main(){
         }
 
 
-    } while (opcao!=0);
-    
     
         
     
