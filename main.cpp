@@ -5,8 +5,9 @@
 #include <algorithm>
 using namespace std;
 
-void menu(filmes vetorFilmes[],  int* qntdFilmes);
+void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes);
 
+// redimenciona de dez em dez o vetor;
 void redimensionarVetorFilmes(filmes* &vetorFilmes, int *capacidade){
     int novaCapacidade = *capacidade + 10;
     filmes* vetorFilmesAux = new filmes[novaCapacidade];
@@ -26,7 +27,7 @@ bool lerCsv(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes){
         
         return false;
     }
-    for(int i=0; (i < *capacidade) && getline(entrada, vetorFilmes[i].nome, ','); i++){ //ATENÇÃO, TALVEZ O MELHOR SEJA MUDAR A LÓGICA PRA WHILE
+    for(int i=0; (i < *capacidade) && getline(entrada, vetorFilmes[i].nome, ','); i++){
         
         (*qntdFilmes)++;
         //ler primeira linha (headers)
@@ -53,9 +54,11 @@ filmes* vetorFilmes = new filmes[40];
 int* capacidade = new int(40);
 int* tamanho = new int(0);
     lerCsv(vetorFilmes, capacidade, tamanho);
-    menu(vetorFilmes, tamanho);
+    menu(vetorFilmes, capacidade, tamanho);
     
     delete[] vetorFilmes;//aqui deleta o vetor que criamos na alocaçao dinamica
+    delete capacidade;
+    delete tamanho;
 
     return 0;
 }

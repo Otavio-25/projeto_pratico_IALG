@@ -2,7 +2,7 @@
 #define FILMES_H
 #include <string>
 using namespace std;
-struct filmes  //registros do filme
+struct filmes  //registros do filme, propriedades de cada um;
 {
     int id;
     string nome;

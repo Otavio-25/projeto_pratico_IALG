@@ -1,14 +1,17 @@
 #include <iostream>
 #include "menu.h"
 #include "mostrarFilmes.h"
+#include "mostrarIntervalo.h"
+#include "inserirFilme.h"
+#include "removerFilme.h"
 #include "filmes.h"
 using namespace std;
-void mostrarFilmes(filmes vetorFilmes[], int qntdFilmes);
-void menu(filmes vetorFilmes[],  int* qntdFilmes){
-    
+
+void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
 
     int opcao;
     
+    do{
         cout<<"=================================="<<endl;
         cout<<"        Projeto Filmes            "<<endl;
         cout<<"=================================="<<endl;
@@ -31,8 +34,9 @@ void menu(filmes vetorFilmes[],  int* qntdFilmes){
             mostrarFilmes(vetorFilmes, *qntdFilmes);
 
         }else if (opcao==2){
+            //imprime intervalo entre dois pontos do vetor
+            mostrarIntervaloFilmes(vetorFilmes, *qntdFilmes);
 
-            /* code */
         }else if (opcao==3){
 
             /* code */
@@ -40,11 +44,13 @@ void menu(filmes vetorFilmes[],  int* qntdFilmes){
 
             /* code */
         }else if (opcao==5){
-
-            /* code */
+            // insere um novo filme na ultima(+ 1) posicao do vetor
+            inserirFilme(vetorFilmes, capacidade, qntdFilmes);
+            
         }else if (opcao==6){
+            //remove filme do vetor pelo seu id;
+            removerFilme(vetorFilmes, qntdFilmes);
 
-            /* code */
         }else if (opcao==7){
 
             /* code */
@@ -55,4 +61,5 @@ void menu(filmes vetorFilmes[],  int* qntdFilmes){
 
             /* code */
         }
+    }while(opcao != 0);
 }

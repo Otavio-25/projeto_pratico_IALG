@@ -1,7 +1,8 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MOSTRAR_FILMES_H
+#define MOSTRAR_FILMES_H
+
 #include "filmes.h"
-using namespace std;
-void mostrarFilmes(filmes vetorFilmes[], int qntdFilmes);
+
+void mostrarFilmes(filmes* vetorFilmes, int qntdFilmes);
 
 #endif
