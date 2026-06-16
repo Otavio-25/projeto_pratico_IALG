@@ -5,6 +5,7 @@
 #include "inserirFilme.h"
 #include "removerFilme.h"
 #include "filmes.h"
+#include "buscarelemento.h"
 using namespace std;
 
 void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
@@ -39,10 +40,10 @@ void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
 
         }else if (opcao==3){
 
-            /* code */
+            buscaNome(vetorFilmes,*qntdFilmes);
         }else if (opcao==4){
 
-            /* code */
+            buscaNotaIMDb(vetorFilmes , *qntdFilmes);
         }else if (opcao==5){
             // insere um novo filme na ultima(+ 1) posicao do vetor
             inserirFilme(vetorFilmes, capacidade, qntdFilmes);
