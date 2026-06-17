@@ -6,6 +6,7 @@
 #include "removerFilme.h"
 #include "filmes.h"
 #include "buscarelemento.h"
+#include "reordenarVetor.h"
 using namespace std;
 
 void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
@@ -23,8 +24,9 @@ void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
         cout<<"  5 - Inserir filme               "<<endl;    
         cout<<"  6 - Remover filme               "<<endl;
         cout<<"  7 - Ordenar por nome            "<<endl;
-        cout<<"  8 - Ordenar por biblioteca      "<<endl;
-        cout<<"  9 - Salvar arquivo              "<<endl;
+        cout<<"  8 - Ordenar por bilheteria      "<<endl;
+        cout<<"  9 - Ordenar pelo ID(Ordem original) "<<endl;
+        cout<<"  10 - Salvar arquivo              "<<endl;
         cout<<"  0 - Sair                        "<<endl;
         cout<<"=================================="<<endl;
         cout<<" Escolha:";
@@ -53,14 +55,17 @@ void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
             removerFilme(vetorFilmes, qntdFilmes);
 
         }else if (opcao==7){
-
+            reordenarVetor(vetorFilmes, *qntdFilmes, "nome");
             /* code */
         }else if (opcao==8){
-
+            reordenarVetor(vetorFilmes, *qntdFilmes, "bilheteria");
             /* code */
         }else if (opcao==9){
-
+            
+            reordenarVetor(vetorFilmes, *qntdFilmes, "id");
             /* code */
+        }else if(opcao=10){
+
         }
     }while(opcao != 0);
 }
