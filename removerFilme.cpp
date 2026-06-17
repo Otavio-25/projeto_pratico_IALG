@@ -44,13 +44,13 @@ void removerFilme(filmes vetorFilmes[], int *qntdFilmes) {
         vetorFilmes[i] = vetorFilmes[i + 1];
     }
 
-    /*
-    nesse caso, se voces preferirem, ele reordena os indices para ficar tudo na sequencia sem "pular" o excluido
+    
+    //nesse caso, se voces preferirem, ele reordena os indices para ficar tudo na sequencia sem "pular" o excluido
     for (int i = indiceEncontrado; i < *qntdFilmes - 1; i++) {
         vetorFilmes[i] = vetorFilmes[i + 1];
         vetorFilmes[i].id = i + 1; 
     }
-    */
+    
 
     (*qntdFilmes)--;
     cout << "Filme com ID " << idProcurado << " removido com sucesso!" << endl;

@@ -7,6 +7,8 @@
 #include "filmes.h"
 #include "buscarelemento.h"
 #include "reordenarVetor.h"
+#include "arquivo.h"
+
 using namespace std;
 
 void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
@@ -64,7 +66,8 @@ void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
             
             reordenarVetor(vetorFilmes, *qntdFilmes, "id");
             /* code */
-        }else if(opcao=10){
+        }else if(opcao==10){
+            salvarCsv( vetorFilmes, *qntdFilmes);
 
         }
     }while(opcao != 0);
