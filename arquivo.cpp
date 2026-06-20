@@ -15,7 +15,7 @@ void salvarCsv(filmes *vetorFilmes, int qntdfilmes){
         return;
     }
     
-
+    saida<<"Nome, Bilheteria, NotaIMDB, DuracaoMin, PaisOrigem"<<endl;
     for (int i = 0; i < qntdfilmes; i++)
     {
         saida<< vetorFilmes[i].nome<<","

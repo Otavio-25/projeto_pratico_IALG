@@ -5,7 +5,7 @@ using namespace std;
 #include "mostrarFilmes.h"
 void mostrarFilmes(filmes vetorFilmes[], int qntdFilmes)//opcao 1 : mostar tds os filmes 
 {
-    cout << "\n=== LISTA DE FILMES ===\n"<<endl<< qntdFilmes;
+    cout << "\n=== LISTA DE FILMES ===\n"<<endl;
 
     for (int i = 0; i < qntdFilmes; i++)
     {

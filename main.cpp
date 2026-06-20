@@ -27,6 +27,9 @@ bool lerCsv(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes){
         
         return false;
     }
+    string header;
+    getline(entrada, header);
+
     for(int i=0; (i < *capacidade) && getline(entrada, vetorFilmes[i].nome, ','); i++){
         
         (*qntdFilmes)++;
