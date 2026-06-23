@@ -4,25 +4,6 @@
 
 using namespace std;
 
-// busca binária para facilitar de encontrar o id
-int buscaBinariaId(filmes vetorFilmes[], int inicio, int fim, int idProcurado) {
-    if(inicio <= fim) {
-        int meio = (inicio + fim) / 2;
-
-        if (vetorFilmes[meio].id == idProcurado) {
-            return meio;
-        }else if (vetorFilmes[meio].id < idProcurado) {
-            return buscaBinariaId(vetorFilmes, meio + 1, fim, idProcurado);
-        }
-        else {
-            return buscaBinariaId(vetorFilmes, inicio, meio - 1, idProcurado);
-        }
-    }
-
-    // Retorna -1 e não achar
-    return -1;
-}
-
 void removerFilme(filmes vetorFilmes[], int *qntdFilmes) {
     int idProcurado;
     int indiceEncontrado = -1;
@@ -31,26 +12,23 @@ void removerFilme(filmes vetorFilmes[], int *qntdFilmes) {
     while (indiceEncontrado == -1) {
         cout << endl <<"Digite o ID do filme que deseja remover : ";
         cin >> idProcurado;
-        // Chama a função de busca binária
-        indiceEncontrado = buscaBinariaId(vetorFilmes, 0, *qntdFilmes - 1, idProcurado);
+        bool parada = false;
+        for (int i = 0; i < *qntdFilmes && parada == false; i++) {
+            if (vetorFilmes[i].id == idProcurado) {
+                indiceEncontrado = i;
+                parada =  true;
+            }
+        }
 
         if (indiceEncontrado == -1) {
             cout << "Erro, filme com ID " << idProcurado << " nao encontrado!" << endl;
         }
     }
-
-    // altera o valor que deseja excluir pelo proximo, e assim por diante;
+    
+    //vai deslocando o resto do vetor para excluir o filme de ID selecionado sem reordenar os IDs
     for (int i = indiceEncontrado; i < *qntdFilmes - 1; i++) {
         vetorFilmes[i] = vetorFilmes[i + 1];
     }
-
-    
-    //nesse caso, se voces preferirem, ele reordena os indices para ficar tudo na sequencia sem "pular" o excluido
-    for (int i = indiceEncontrado; i < *qntdFilmes - 1; i++) {
-        vetorFilmes[i] = vetorFilmes[i + 1];
-        vetorFilmes[i].id = i + 1; 
-    }
-    
 
     (*qntdFilmes)--;
     cout << "Filme com ID " << idProcurado << " removido com sucesso!" << endl;

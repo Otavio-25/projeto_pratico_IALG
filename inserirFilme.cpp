@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream> // para usar stringstream
 #include "inserirFilme.h"
 #include "filmes.h"
 
@@ -31,20 +32,33 @@ void inserirFilme(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes) {
 
     // Validação da Bilheteria
     do {
+        string texto;
         cout << "Bilheteria (em milhoes): ";
-        cin >> novoFilme->bilheteria;
-        if (novoFilme->bilheteria < 0) {
+        cin >> texto;
+        for (int i = 0; i < texto.size(); i++)
+            if (texto[i] == ','){
+                texto[i] = '.';
+            }
+        stringstream conversao(texto);
+        conversao >> novoFilme->bilheteria;
+        if (novoFilme->bilheteria < 0)
             cout << "Erro, a bilheteria nao pode ser menor que zero. Tente novamente!" << endl;
-        }
     } while (novoFilme->bilheteria < 0);
 
     // Validação da Nota IMDb
+    //stringstream trata a string como um cin, voce joga um texto dentro dela e extrai como se estivesse lendo do teclado
     do {
+        string texto;
         cout << "Nota IMDb (0.0 a 10.0): ";
-        cin >> novoFilme->notaIMDB;
-        if (novoFilme->notaIMDB < 0.0 || novoFilme->notaIMDB > 10.0) {
+        cin >> texto;
+        for (int i = 0; i < texto.size(); i++)
+            if (texto[i] == ','){
+                texto[i] = '.';
+            }
+        stringstream conversao(texto);
+        conversao >> novoFilme->notaIMDB;
+        if (novoFilme->notaIMDB < 0.0 || novoFilme->notaIMDB > 10.0)
             cout << "Erro, a nota deve estar entre 0.0 e 10.0. Tente novamente!" << endl;
-        }
     } while (novoFilme->notaIMDB < 0.0 || novoFilme->notaIMDB > 10.0);
 
     // Validação da Duração
