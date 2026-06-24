@@ -71,13 +71,13 @@ void buscaNome(filmes vetorFilmes[], int qntdFilmes){
 void buscaNotaIMDb(filmes vetorFilmes[] , int qntdFilmes){
 
     cout<<" Nota Busca : ";
-    int notaImdb;
+    float notaImdb;
     cin>>notaImdb;
 
     bool encontrou=false;
     for (int i = 0; i < qntdFilmes; i++)
     {
-        if ((int)vetorFilmes[i].notaIMDB  == notaImdb)
+        if (vetorFilmes[i].notaIMDB  == notaImdb)
         {
             cout<<"ID: "<< vetorFilmes[i].id <<endl;
             cout<<"Nome: "<< vetorFilmes[i].nome <<endl;
