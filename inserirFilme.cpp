@@ -3,12 +3,14 @@
 #include <sstream> // para usar stringstream
 #include "inserirFilme.h"
 #include "filmes.h"
+#include "reordenarVetor.h"
 
 using namespace std;
 
 void redimensionarVetorFilmes(filmes* &vetorFilmes, int *capacidade);
 
 void inserirFilme(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes) {
+    reordenarVetor(vetorFilmes, *qntdFilmes, "id");
     // Se o vetor estiver cheio, chama o redimensionamento automático
     if (*qntdFilmes >= *capacidade) {
         redimensionarVetorFilmes(vetorFilmes, capacidade);
@@ -94,7 +96,7 @@ void inserirFilme(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes) {
     vetorFilmes[*qntdFilmes] = *novoFilme;
     (*qntdFilmes)++;
 
-    cout << endl << "Filme '" << novoFilme->nome << "' inserido com sucesso com o ID: " << novoFilme->id << "!" << endl;
-
+    cout << endl << "Filme '" << novoFilme->nome << "' inserido com sucesso com o ID: " << novoFilme->id << "! (LISTA REORDENADA COM BASE NO ID)" << endl;
+    
     delete novoFilme;
 }
