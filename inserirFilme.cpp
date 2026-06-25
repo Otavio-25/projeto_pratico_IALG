@@ -80,8 +80,10 @@ void inserirFilme(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes) {
         }
         if(parada != -1){
             for(int i = 0; i < parada; i++){
-                textoNovo[i] = texto[i];
+                textoNovo += texto[i];
             }
+        }else{
+            textoNovo = texto;
         }
         stringstream conversao(textoNovo);
         conversao >> novoFilme->duracaoMin;
