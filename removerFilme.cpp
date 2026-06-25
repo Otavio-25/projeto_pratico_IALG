@@ -25,7 +25,7 @@ void removerFilme(filmes vetorFilmes[], int *qntdFilmes) {
         }
     }
     
-    //vai deslocando o resto do vetor para excluir o filme de ID selecionado sem reordenar os IDs
+    //vai deslocando o resto do vetor para excluir o filme de ID selecionado sem reordenar os filmes em seus novos indices
     for (int i = indiceEncontrado; i < *qntdFilmes - 1; i++) {
         vetorFilmes[i] = vetorFilmes[i + 1];
     }

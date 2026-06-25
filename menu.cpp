@@ -58,17 +58,12 @@ void menu(filmes *&vetorFilmes, int *capacidade, int* qntdFilmes){
 
         }else if (opcao==7){
             reordenarVetor(vetorFilmes, *qntdFilmes, "nome");
-            /* code */
         }else if (opcao==8){
             reordenarVetor(vetorFilmes, *qntdFilmes, "bilheteria");
-            /* code */
         }else if (opcao==9){
-            
             reordenarVetor(vetorFilmes, *qntdFilmes, "id");
-            /* code */
         }else if(opcao==10){
             salvarCsv( vetorFilmes, *qntdFilmes);
-
         }
     }while(opcao != 0);
 }

@@ -33,41 +33,59 @@ void inserirFilme(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes) {
     } while (novoFilme->nome.empty());
 
     // Validação da Bilheteria
+    //stringstream trata a string como um cin, voce joga um texto dentro dela e extrai como se estivesse lendo do teclado
     do {
         string texto;
         cout << "Bilheteria (em milhoes): ";
         cin >> texto;
-        for (int i = 0; i < texto.size(); i++)
-            if (texto[i] == ','){
+        for(int i = 0; i < texto.size(); i++){
+            if(texto[i] == ','){
                 texto[i] = '.';
             }
-        stringstream conversao(texto);
-        conversao >> novoFilme->bilheteria;
-        if (novoFilme->bilheteria < 0)
+        }
+        stringstream conversao(texto); // cria meio que uma caixa chamada conversao e insere o valor texto nela
+        conversao >> novoFilme->bilheteria; // le o conteudo ja transformando para o tipo da variavel do registro
+        if (novoFilme->bilheteria < 0){
             cout << "Erro, a bilheteria nao pode ser menor que zero. Tente novamente!" << endl;
+        }
     } while (novoFilme->bilheteria < 0);
 
     // Validação da Nota IMDb
-    //stringstream trata a string como um cin, voce joga um texto dentro dela e extrai como se estivesse lendo do teclado
     do {
         string texto;
         cout << "Nota IMDb (0.0 a 10.0): ";
         cin >> texto;
-        for (int i = 0; i < texto.size(); i++)
-            if (texto[i] == ','){
+        for(int i = 0; i < texto.size(); i++){
+            if(texto[i] == ','){
                 texto[i] = '.';
             }
+        }
         stringstream conversao(texto);
         conversao >> novoFilme->notaIMDB;
-        if (novoFilme->notaIMDB < 0.0 || novoFilme->notaIMDB > 10.0)
+        if (novoFilme->notaIMDB < 0.0 || novoFilme->notaIMDB > 10.0){
             cout << "Erro, a nota deve estar entre 0.0 e 10.0. Tente novamente!" << endl;
+        }
     } while (novoFilme->notaIMDB < 0.0 || novoFilme->notaIMDB > 10.0);
 
     // Validação da Duração
     do {
+        string texto, textoNovo;
+        int parada = -1;
         cout << "Duracao (em minutos): ";
-        cin >> novoFilme->duracaoMin;
-        if (novoFilme->duracaoMin <= 0) {
+        cin >> texto;
+        for(int i = 0; i < (int)texto.size(); i++){
+            if(texto[i] == ',' || texto[i] == '.'){
+                parada = i;
+            }
+        }
+        if(parada != -1){
+            for(int i = 0; i < parada; i++){
+                textoNovo[i] = texto[i];
+            }
+        }
+        stringstream conversao(textoNovo);
+        conversao >> novoFilme->duracaoMin;
+        if(novoFilme->duracaoMin <= 0){
             cout << "Erro, a duracao deve ser maior que zero. Tente novamente!" << endl;
         }
     } while (novoFilme->duracaoMin <= 0);
@@ -78,15 +96,15 @@ void inserirFilme(filmes* &vetorFilmes, int *capacidade, int *qntdFilmes) {
     do {
         cout << "Pais de origem: ";
         getline(cin, novoFilme->paisOrigem);
-        if (novoFilme->paisOrigem.empty()) {
+        if(novoFilme->paisOrigem.empty()){
             cout << "Erro, o pais nao pode ser vazio. Tente novamente!" << endl;
         }
     } while (novoFilme->paisOrigem.empty());
 
     // novo id de onde o filme ficará
     int maiorId = vetorFilmes[0].id;
-        for (int i = 1; i < *qntdFilmes; i++) {
-            if (vetorFilmes[i].id > maiorId) {
+        for(int i = 1; i < *qntdFilmes; i++){
+            if(vetorFilmes[i].id > maiorId){
                 maiorId = vetorFilmes[i].id;
             }
         }
